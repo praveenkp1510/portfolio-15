@@ -164,7 +164,7 @@ export const Intro = () => {
                 variants={itemVariants}
                 className="text-lg text-green-400 mb-2"
               >
-                Hey, I'm KP 👋
+                Hey, I'm Praveen 👋
               </motion.p>
               <motion.h1
                 variants={itemVariants}
