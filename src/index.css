@@ -1,0 +1,44 @@
+@import "tailwindcss";
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar track */
+    width: 0;      /* Ensures no width is reserved for it */
+    height: 0;     /* Ensures no height is reserved for it in case of horizontal scrollbar */
+}
+
+/* For Firefox */
+/* Note: Firefox's scrollbar hiding is less direct.
+   'scrollbar-width: none;' hides it, but might not be supported in all versions or contexts.
+   It's more about styling it to be minimal.
+   'overflow: hidden;' on the body or element would prevent scrolling entirely.
+   If you want to allow scrolling but hide the visual scrollbar in Firefox,
+   you might need a JavaScript solution or a custom scrollbar library.
+*/
+body {
+    scrollbar-width: none; /* For Firefox */
+}
+
+/* For Internet Explorer and Edge (legacy MSHTML engine) */
+/* Note: This is less relevant for modern Edge (which is Chromium-based) */
+body {
+    -ms-overflow-style: none; /* For Internet Explorer and Edge Legacy */
+}
+
+/* To apply this to a specific element rather than the whole body */
+.my-element {
+    /* For Webkit browsers */
+    &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    /* For Firefox */
+    scrollbar-width: none;
+
+    /* For Internet Explorer and Edge Legacy */
+    -ms-overflow-style: none;
+
+    /* Important: The element itself needs to be scrollable */
+    overflow: auto; /* Or scroll, or overlay */
+}
