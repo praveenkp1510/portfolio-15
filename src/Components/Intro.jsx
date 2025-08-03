@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'; // For email, phone, and location
 import { FaLinkedin } from 'react-icons/fa'; // For LinkedIn
-
+import profile from "../assets/profile.jpg"
 export const Intro = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [activeExperience, setActiveExperience] = useState("nubiznez");
@@ -202,7 +202,7 @@ export const Intro = () => {
               <div className="relative w-72 h-72 lg:w-96 lg:h-96">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-transparent p-1 animate-spin-slow-fast" />
                 <img
-                  src="https://placehold.co/400x400/111/fff?text=KP"
+                  src={profile}
                   alt="K P Praveen"
                   className="relative w-full h-full rounded-full object-cover border-4 border-gray-950"
                 />
