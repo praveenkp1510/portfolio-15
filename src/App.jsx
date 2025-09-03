@@ -8,8 +8,8 @@ function App() {
     <div className="bg-black min-w-screen max-w-screen">
       <Navbar />
       <Routes>
-        <Route path="/portfolio-15/" element={<Intro />} />
-        <Route path="/portfolio/projects" element={<Projects />} />
+        <Route path="/" element={<Intro />} />
+        <Route path="/projects" element={<Projects />} />
       </Routes>
     </div>
   );

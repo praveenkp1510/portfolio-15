@@ -1,65 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import { FaLinkedin } from "react-icons/fa";
+import profile from "../assets/developer-program.PNG";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'; // For email, phone, and location
-import { FaLinkedin } from 'react-icons/fa'; // For LinkedIn
-import profile from "../assets/profile.jpg"
+
+// This hook is no longer necessary but is kept as per the original code.
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+  return isMobile;
+};
+
+// Variants for the fade-in-up effect
+const containerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
+
+// Variant for the pulse animation on the button
+const buttonPulse = {
+  initial: { scale: 1, opacity: 1 },
+  pulse: {
+    scale: 1.05,
+    opacity: 0.8,
+    transition: {
+      duration: 1.5,
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatType: "reverse",
+    },
+  },
+};
+
+// Variant for the profile image spin
+const profileSpin = {
+  animate: {
+    rotate: 360,
+    transition: {
+      duration: 6,
+      ease: "linear",
+      repeat: Infinity,
+    },
+  },
+};
+
 export const Intro = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
   const [activeExperience, setActiveExperience] = useState("nubiznez");
+  const isMobile = useIsMobile();
 
-  // Intersection Observer hooks for scroll animations
-  const [heroRef, heroInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const [projectsRef, projectsInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const [aboutRef, aboutInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const [experienceRef, experienceInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const [skillsRef, skillsInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const [contactRef, contactInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-  // Reusable Framer Motion variants for staggered animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  // Consistent green gradient for headlines
   const textGradient =
     "bg-gradient-to-r from-green-400 to-green-600 text-transparent bg-clip-text";
 
-  // Experience data (remains unchanged)
   const experiences = {
     nubiznez: {
       title: "Nubiznez",
@@ -83,7 +94,6 @@ export const Intro = () => {
     },
   };
 
-  // Projects Data (remains unchanged, but IDs are crucial)
   const projects = [
     {
       id: "crm-dashboard",
@@ -115,126 +125,117 @@ export const Intro = () => {
     },
   ];
 
-  // Function to handle project card click
   const handleProjectClick = (projectId) => {
     navigate("/projects", { state: { projectId: projectId } });
   };
 
   return (
     <main className="bg-black text-gray-200 font-inter min-h-screen relative">
-      <style>{`
-        /* Custom scrollbar styling */
-        ::-webkit-scrollbar {
-          width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-          background: #1f2937;
-        }
-        ::-webkit-scrollbar-thumb {
-          background: #34d399; /* green-500 */
-          border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #10b981; /* green-700 */
-        }
-        @keyframes spin-slow-fast {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        .animate-spin-slow-fast {
-          animation: spin-slow-fast 6s linear infinite;
-        }
-      `}</style>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
-        <section
-          ref={heroRef}
+        <motion.section
           id="hero"
           className="min-h-screen flex items-center py-16"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
         >
-          <motion.div
-            className="grid lg:grid-cols-2 items-center gap-12"
-            variants={containerVariants}
-            initial="hidden"
-            animate={heroInView ? "visible" : "hidden"}
-          >
+          <div className="grid lg:grid-cols-2 items-center gap-12">
             <div className="text-left">
               <motion.p
-                variants={itemVariants}
                 className="text-lg text-green-400 mb-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
               >
                 Hey, I'm Praveen 👋
               </motion.p>
               <motion.h1
-                variants={itemVariants}
                 className="text-5xl md:text-7xl font-extrabold text-white mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
               >
                 <span className={textGradient}>Frontend</span> Developer
               </motion.h1>
               <motion.p
-                variants={itemVariants}
                 className="text-xl text-gray-400 leading-relaxed mb-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
               >
                 I'm a frontend developer focused on building clean, responsive
                 websites and mobile apps. I work mainly with ReactJS, Tailwind
                 CSS, and React Native.
               </motion.p>
-              <motion.div variants={itemVariants} className="flex gap-4">
+              <motion.div
+                className="flex gap-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              >
                 <a
                   href="#projects"
                   className="px-6 py-3 rounded-full border border-green-500 text-green-400 font-bold transition-transform hover:scale-105 hover:bg-green-500 hover:text-gray-950"
                 >
                   Browse Projects
                 </a>
-                <a
+                <motion.a
                   href="#contact"
-                  className="px-6 py-3 rounded-full border border-green-500 text-green-400 font-bold transition-transform hover:scale-105 hover:bg-green-500 hover:text-gray-950"
+                  className="px-6 py-3 rounded-full border border-green-500 text-green-400 font-bold hover:bg-green-500 hover:text-gray-950"
+                  variants={buttonPulse}
+                  initial="initial"
+                  animate="pulse"
+                  whileHover={{ scale: 1.05 }}
                 >
                   Get In Touch
-                </a>
+                </motion.a>
               </motion.div>
             </div>
-            <motion.div
-              variants={itemVariants}
-              className="flex justify-center lg:justify-end"
-            >
+            <div className="flex justify-center lg:justify-end">
               <div className="relative w-72 h-72 lg:w-96 lg:h-96">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-transparent p-1 animate-spin-slow-fast" />
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-transparent p-1"
+                  variants={profileSpin}
+                  animate="animate"
+                />
                 <img
                   src={profile}
                   alt="K P Praveen"
                   className="relative w-full h-full rounded-full object-cover border-4 border-gray-950"
                 />
               </div>
-            </motion.div>
-          </motion.div>
-        </section>
+            </div>
+          </div>
+        </motion.section>
 
         {/* Projects Section */}
-        <section ref={projectsRef} id="projects" className="py-20">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-8"
-          >
+        <motion.section
+          id="projects"
+          className="py-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
             Projects<span className="text-green-500">.</span>
-          </motion.h2>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                variants={itemVariants}
-                className="bg-gray-900 rounded-lg shadow-xl border border-gray-800 transition-transform hover:scale-[1.02] cursor-pointer"
-                onClick={() => handleProjectClick(project.id)} // Call handleProjectClick
+                className="bg-gray-900 rounded-lg shadow-xl border border-gray-800 cursor-pointer"
+                onClick={() => handleProjectClick(project.id)}
+                whileHover={{
+                  scale: 1.02,
+                  backgroundColor: "#1f2937",
+                  boxShadow:
+                    "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <img
                   src={project.imageUrl}
@@ -249,27 +250,22 @@ export const Intro = () => {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-        </section>
+          </div>
+        </motion.section>
 
         {/* About Section */}
-        <section ref={aboutRef} id="about" className="py-20">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-8"
-          >
+        <motion.section
+          id="about"
+          className="py-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
             About me<span className="text-green-500">.</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-lg text-gray-400 leading-relaxed max-w-4xl"
-          >
+          </h2>
+          <p className="text-lg text-gray-400 leading-relaxed max-w-4xl">
             In my role as a Front-End Developer, I focus on building clean,
             responsive websites and mobile apps that are easy to use. I work
             mainly with ReactJS, Tailwind CSS, and React Native, turning UI/UX
@@ -277,33 +273,30 @@ export const Intro = () => {
             designers and backend developers to make everything work smoothly.
             Lately, I've been taking the lead on a new accounting application
             project.
-          </motion.p>
-        </section>
+          </p>
+        </motion.section>
 
         {/* Experience Section */}
-        <section ref={experienceRef} id="experience" className="py-20">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-8"
-          >
+        <motion.section
+          id="experience"
+          className="py-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
             Experience<span className="text-green-500">.</span>
-          </motion.h2>
+          </h2>
           <div className="grid lg:grid-cols-3 gap-8">
             <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
               className="lg:col-span-1 bg-gray-900 rounded-lg p-4 shadow-xl border border-gray-800"
+              variants={containerVariants}
             >
               <ul className="space-y-2">
-                {Object.keys(experiences).map((key, index) => (
-                  <motion.li
+                {Object.keys(experiences).map((key) => (
+                  <li
                     key={key}
-                    variants={itemVariants}
                     className={`p-3 rounded-md cursor-pointer transition-colors ${
                       activeExperience === key
                         ? "bg-green-500 text-gray-950 font-semibold"
@@ -312,16 +305,13 @@ export const Intro = () => {
                     onClick={() => setActiveExperience(key)}
                   >
                     {experiences[key].title}
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </motion.div>
             <motion.div
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
               className="lg:col-span-2 bg-gray-900 rounded-lg p-6 shadow-xl border border-gray-800"
+              variants={containerVariants}
             >
               <h3 className="text-2xl font-bold text-green-400 mb-2">
                 {experiences[activeExperience].role}
@@ -336,29 +326,24 @@ export const Intro = () => {
               </ul>
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Skills Section */}
-        <section ref={skillsRef} id="skills" className="py-20">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-8"
-          >
+        <motion.section
+          id="skills"
+          className="py-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
             Skills<span className="text-green-500">.</span>
-          </motion.h2>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <motion.div
-              variants={itemVariants}
               className="bg-gray-900 p-6 rounded-lg border border-gray-800 shadow-xl"
+              variants={containerVariants}
             >
               <h3 className="text-xl font-bold text-green-400 mb-4">
                 Languages
@@ -370,8 +355,8 @@ export const Intro = () => {
               </ul>
             </motion.div>
             <motion.div
-              variants={itemVariants}
               className="bg-gray-900 p-6 rounded-lg border border-gray-800 shadow-xl"
+              variants={containerVariants}
             >
               <h3 className="text-xl font-bold text-green-400 mb-4">
                 Frameworks/Libraries
@@ -385,8 +370,8 @@ export const Intro = () => {
               </ul>
             </motion.div>
             <motion.div
-              variants={itemVariants}
               className="bg-gray-900 p-6 rounded-lg border border-gray-800 shadow-xl"
+              variants={containerVariants}
             >
               <h3 className="text-xl font-bold text-green-400 mb-4">
                 Certifications
@@ -397,8 +382,8 @@ export const Intro = () => {
               </ul>
             </motion.div>
             <motion.div
-              variants={itemVariants}
               className="bg-gray-900 p-6 rounded-lg border border-gray-800 shadow-xl"
+              variants={containerVariants}
             >
               <h3 className="text-xl font-bold text-green-400 mb-4">
                 Education
@@ -412,75 +397,59 @@ export const Intro = () => {
               <p className="text-green-400">8.3 CGPA</p>
               <p className="text-gray-500 text-xs">Aug 2019 - Apr 2023</p>
             </motion.div>
-          </motion.div>
-        </section>
+          </div>
+        </motion.section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-4"
-          >
+        <motion.section
+          id="contact"
+          className="py-20 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Get In Touch<span className="text-green-500">.</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-lg text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto"
-          >
+          </h2>
+          <p className="text-lg text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto">
             Feel free to reach out to me for collaborations or just to say hi!
             I'm always open to new opportunities.
-          </motion.p>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            className="flex flex-col items-center gap-4"
-          >
-            <motion.p
-              variants={itemVariants}
-              className="text-xl text-green-400 flex items-center gap-2"
-            >
-              <MdEmail className="text-2xl" /> {/* Email Icon */}
+          </p>
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-xl text-green-400 flex items-center gap-2">
+              <MdEmail className="text-2xl" />
               <a
                 href="mailto:praveen1510kp@gmail.com"
                 className="hover:underline flex items-center"
               >
                 praveen1510kp@gmail.com
               </a>
-            </motion.p>
-            <motion.p
-              variants={itemVariants}
-              className="text-lg text-gray-400 flex items-center gap-2"
-            >
-              <MdPhone className="text-2xl" /> {/* Phone Icon */}
+            </p>
+            <p className="text-lg text-gray-400 flex items-center gap-2">
+              <MdPhone className="text-2xl" />
               Phone: 9688553316
-            </motion.p>
-            <motion.p
-              variants={itemVariants}
-              className="text-lg text-gray-400 flex items-center gap-2"
-            >
-              <MdLocationOn className="text-2xl" /> {/* Location Icon */}
+            </p>
+            <p className="text-lg text-gray-400 flex items-center gap-2">
+              <MdLocationOn className="text-2xl" />
               Address: Maramangalathupatti, Salem, Tamil Nadu
-            </motion.p>
+            </p>
             <motion.a
-              variants={itemVariants}
               href="https://www.linkedin.com/in/kppraveen/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full bg-green-500 text-gray-950 font-bold transition-transform hover:scale-105 flex items-center gap-2"
+              className="px-6 py-3 rounded-full bg-green-500 text-gray-950 font-bold flex items-center gap-2"
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: "#34d399",
+                color: "#10b981",
+              }}
             >
-              <FaLinkedin className="text-xl" /> {/* LinkedIn Icon */}
+              <FaLinkedin className="text-xl" />
               Connect on LinkedIn
             </motion.a>
-          </motion.div>
-        </section>
+          </div>
+        </motion.section>
       </div>
     </main>
   );

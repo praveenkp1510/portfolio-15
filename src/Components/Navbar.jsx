@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HiOutlineHome, HiOutlineCode } from "react-icons/hi"; // Importing icons
-import dayjs from 'dayjs'; // Import Day.js
+import dayjs from "dayjs"; // Import Day.js
 
 export const Navbar = () => {
   const location = useLocation();
@@ -10,12 +10,16 @@ export const Navbar = () => {
 
   useEffect(() => {
     // Format the date using Day.js
-    setCurrentDate(dayjs().format('DD-MM-YYYY'));
+    setCurrentDate(dayjs().format("DD-MM-YYYY"));
   }, []);
 
   const navVariants = {
     hidden: { y: -100, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100, damping: 15, delay: 0.2 } },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100, damping: 15, delay: 0.2 },
+    },
   };
 
   // Define specific colors for Home link (Green theme)
@@ -24,16 +28,16 @@ export const Navbar = () => {
     inactive: "text-gray-300",
     hover: "hover:text-green-200",
     underline: "bg-green-400",
-    date: "text-green-400"
+    date: "text-green-400",
   };
 
-  // Define specific colors for Projects link (Violet theme)
+  // Define specific colors for Projects link (Green theme)
   const projectsColors = {
-    active: "text-violet-400",
+    active: "text-green-400",
     inactive: "text-gray-300",
-    hover: "hover:text-violet-300",
-    underline: "bg-violet-600",
-    date: "text-violet-400"
+    hover: "hover:text-green-300",
+    underline: "bg-green-600",
+    date: "text-green-400",
   };
 
   return (
@@ -69,13 +73,15 @@ export const Navbar = () => {
               flex items-center
               text-lg sm:text-xl font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-full
               transition-colors duration-200 ease-in-out
-              ${location.pathname === "/"
-                ? homeColors.active // Active Home: Green
-                : homeColors.inactive + " " + homeColors.hover // Inactive Home: Gray with Green hover
+              ${
+                location.pathname === "/"
+                  ? homeColors.active // Active Home: Green
+                  : homeColors.inactive + " " + homeColors.hover // Inactive Home: Gray with Green hover
               }
             `}
           >
-            <HiOutlineHome className="text-xl sm:text-2xl mr-1" /> {/* Icon inside the span */}
+            <HiOutlineHome className="text-xl sm:text-2xl mr-1" />{" "}
+            {/* Icon inside the span */}
             Home
           </motion.span>
           {location.pathname === "/" && (
@@ -96,13 +102,15 @@ export const Navbar = () => {
               flex items-center
               text-lg sm:text-xl font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-full
               transition-colors duration-200 ease-in-out
-              ${location.pathname === "/projects"
-                ? projectsColors.active // Active Projects: Violet
-                : projectsColors.inactive + " " + projectsColors.hover // Inactive Projects: Gray with Violet hover
+              ${
+                location.pathname === "/projects"
+                  ? projectsColors.active // Active Projects: Violet
+                  : projectsColors.inactive + " " + projectsColors.hover // Inactive Projects: Gray with Violet hover
               }
             `}
           >
-            <HiOutlineCode className="text-xl sm:text-2xl mr-1" /> {/* Icon inside the span */}
+            <HiOutlineCode className="text-xl sm:text-2xl mr-1" />{" "}
+            {/* Icon inside the span */}
             Projects
           </motion.span>
           {location.pathname === "/projects" && (
