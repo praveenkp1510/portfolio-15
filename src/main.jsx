@@ -8,7 +8,7 @@ document.documentElement.classList.add('dark');
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/portfolio-15/">
       <App />
     </BrowserRouter>
   </React.StrictMode>
