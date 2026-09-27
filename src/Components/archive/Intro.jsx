@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'; // For email, phone, and location
-import { FaLinkedin } from 'react-icons/fa'; // For LinkedIn
-import profile from "../assets/profile.jpg"
+import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md"; // For email, phone, and location
+import { FaLinkedin } from "react-icons/fa"; // For LinkedIn
+import profile from "../assets/profile.jpg";
 export const Intro = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [activeExperience, setActiveExperience] = useState("nubiznez");
@@ -117,7 +117,7 @@ export const Intro = () => {
 
   // Function to handle project card click
   const handleProjectClick = (projectId) => {
-    navigate("/projects", { state: { projectId: projectId } });
+    navigate("/portfolio-15/projects", { state: { projectId: projectId } });
   };
 
   return (

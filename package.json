@@ -12,7 +12,9 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.11",
+    "class-variance-authority": "^0.7.1",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.23.12",
     "react": "^19.1.0",

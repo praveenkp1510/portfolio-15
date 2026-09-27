@@ -1,0 +1,198 @@
+/* Comic Book Style Theme */
+:root {
+  --spotify-black: #121212;
+  --spotify-surface: #181818;
+  --spotify-elevated: #202020;
+  --spotify-border: #2b2b2b;
+  --spotify-green: #1db954;
+  --spotify-green-strong: #1ed760;
+  --spotify-text: #f4f4f4;
+  --spotify-muted: #b3b3b3;
+  --comic-shadow: rgba(0, 0, 0, 0.35);
+}
+
+/* Comic-style fonts */
+.comic-font {
+  font-family: 'Comic Neue', 'Patrick Hand', cursive;
+}
+
+.comic-title {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px;
+  color: var(--spotify-text);
+}
+
+/* Global spotify-comic backdrop */
+.spotify-comic-bg {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(29, 185, 84, 0.14), transparent 28%),
+    radial-gradient(circle at 85% 90%, rgba(30, 215, 96, 0.08), transparent 35%),
+    linear-gradient(180deg, #121212 0%, #0f0f0f 100%);
+}
+
+.section-shell {
+  background: rgba(24, 24, 24, 0.88);
+  border: 1px solid var(--spotify-border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px var(--comic-shadow);
+}
+
+/* Comic panel surfaces */
+.comic-panel {
+  background: linear-gradient(145deg, var(--spotify-surface) 0%, #1f1f1f 100%);
+  border: 2px solid var(--spotify-border);
+  box-shadow: 0 8px 18px var(--comic-shadow);
+  color: var(--spotify-text);
+}
+
+/* Comic buttons */
+.comic-button {
+  background: linear-gradient(135deg, var(--spotify-green) 0%, #179d49 100%);
+  border: 2px solid var(--spotify-green-strong);
+  border-radius: 10px;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #08140d;
+  box-shadow: 0 5px 14px rgba(29, 185, 84, 0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.comic-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 18px rgba(29, 185, 84, 0.35);
+}
+
+.comic-button:active {
+  transform: translateY(0);
+}
+
+/* Comic cards */
+.comic-card {
+  background: linear-gradient(160deg, var(--spotify-surface) 0%, #1e1e1e 100%);
+  border: 1px solid var(--spotify-border);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px var(--comic-shadow);
+  color: var(--spotify-text);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comic-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--spotify-green);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+/* Speech bubbles */
+.speech-bubble {
+  background: var(--spotify-elevated);
+  border: 1px solid var(--spotify-border);
+  border-radius: 20px;
+  padding: 12px 18px;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  color: var(--spotify-text);
+  box-shadow: 0 5px 16px var(--comic-shadow);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 10px solid var(--spotify-border);
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 35px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--spotify-elevated);
+  z-index: 1;
+}
+
+/* Comic text effects */
+.comic-text-shadow {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Comic grid layout */
+.comic-grid {
+  display: grid;
+  gap: 24px;
+  padding: 0;
+}
+
+/* Comic section dividers */
+.comic-divider {
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #2b2b2b,
+    #2b2b2b 10px,
+    #1db954 10px,
+    #1db954 20px
+  );
+  margin: 28px 0;
+  position: relative;
+}
+
+.comic-divider::before {
+  content: '💥';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #181818;
+  padding: 2px 10px;
+  border: 1px solid #2b2b2b;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.comic-nav {
+  background: rgba(24, 24, 24, 0.92);
+  border-bottom: 1px solid var(--spotify-border);
+  backdrop-filter: blur(8px);
+}
+
+.comic-nav-pill {
+  background: #1f1f1f;
+  border: 1px solid #2f2f2f;
+  color: var(--spotify-text);
+  border-radius: 999px;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.comic-nav-pill:hover {
+  background: #262626;
+  border-color: var(--spotify-green);
+}
+
+.comic-nav-pill.active {
+  background: rgba(29, 185, 84, 0.18);
+  border-color: var(--spotify-green);
+  color: #d9ffe8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-shell {
+    padding: 1rem;
+  }
+}
