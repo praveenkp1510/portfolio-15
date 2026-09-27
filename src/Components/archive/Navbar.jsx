@@ -58,7 +58,7 @@ export const Navbar = () => {
       animate="visible"
     >
       {/* K P Praveen - Left Logo/Name */}
-      <Link to="/portfolio-15/" className="flex items-center mr-4 md:mr-8">
+      <Link to="/" className="flex items-center mr-4 md:mr-8">
         <span className="hidden sm:inline text-white text-xl font-bold ml-3 whitespace-nowrap">
           K P Praveen
         </span>
@@ -67,13 +67,13 @@ export const Navbar = () => {
       {/* Navigation Links */}
       <div className="flex items-center space-x-2 sm:space-x-4">
         {/* Home Link */}
-        <Link to="/portfolio-15/" className="group relative flex items-center">
+        <Link to="/" className="group relative flex items-center">
           <motion.span
             className={`
               flex items-center
               text-lg sm:text-xl font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-full
               transition-colors duration-200 ease-in-out
-              ${location.pathname === "/portfolio-15/"
+              ${location.pathname === "/"
                 ? homeColors.active // Active Home: Green
                 : homeColors.inactive + " " + homeColors.hover // Inactive Home: Gray with Green hover
               }
@@ -83,7 +83,7 @@ export const Navbar = () => {
             {/* Icon inside the span */}
             Home
           </motion.span>
-          {location.pathname === "/portfolio-15/" && (
+          {location.pathname === "/" && (
             <motion.span
               layoutId="underline"
               className={`absolute left-1/2 -translate-x-1/2 bottom-0 w-[calc(100%-1rem)] h-0.5 ${homeColors.underline} rounded-full`}
@@ -95,13 +95,13 @@ export const Navbar = () => {
         </Link>
 
         {/* Projects Link */}
-        <Link to="/portfolio-15/projects" className="group relative flex items-center">
+        <Link to="/projects" className="group relative flex items-center">
           <motion.span
             className={`
               flex items-center
               text-lg sm:text-xl font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-full
               transition-colors duration-200 ease-in-out
-              ${location.pathname === "/portfolio-15/projects"
+              ${location.pathname === "/projects"
                 ? projectsColors.active // Active Projects: Violet
                 : projectsColors.inactive + " " + projectsColors.hover // Inactive Projects: Gray with Violet hover
               }
@@ -111,7 +111,7 @@ export const Navbar = () => {
             {/* Icon inside the span */}
             Projects
           </motion.span>
-          {location.pathname === "/portfolio-15/projects" && (
+          {location.pathname === "/projects" && (
             <motion.span
               layoutId="underline"
               className={`absolute left-1/2 -translate-x-1/2 bottom-0 w-[calc(100%-1rem)] h-0.5 ${projectsColors.underline} rounded-full`}
@@ -127,7 +127,7 @@ export const Navbar = () => {
       {/* Current Date */}
       <div
         className={`text-sm sm:text-base font-medium ml-4 whitespace-nowrap
-          ${location.pathname === "/portfolio-15/" ? homeColors.date : projectsColors.date}
+          ${location.pathname === "/" ? homeColors.date : projectsColors.date}
         `}
       >
         {currentDate}

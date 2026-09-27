@@ -125,7 +125,7 @@ export const Intro = () => {
   ];
 
   const handleProjectClick = (projectId) => {
-    navigate("/portfolio-15/projects", { state: { projectId: projectId } });
+    navigate("/projects", { state: { projectId: projectId } });
   };
 
   return (

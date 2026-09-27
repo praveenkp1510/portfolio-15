@@ -61,8 +61,8 @@ function App() {
           <main className="relative">
             <Suspense fallback={<PageLoader />}>
               <Routes>
-                <Route path="/portfolio-15/" element={<Home />} />
-                <Route path="/portfolio-15/projects" element={<Projects />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/projects" element={<Projects />} />
               </Routes>
             </Suspense>
           </main>

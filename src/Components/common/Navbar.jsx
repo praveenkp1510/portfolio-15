@@ -18,31 +18,31 @@ export const Navbar = () => {
 
   const navItems = [
     { 
-      path: '/portfolio-15/', 
+      path: '/', 
       label: 'Home', 
       icon: HiOutlineHome,
       sectionId: 'hero'
     },
     { 
-      path: '/portfolio-15/projects', 
+      path: '/projects', 
       label: 'Projects', 
       icon: HiOutlineCode,
       sectionId: 'projects'
     },
     { 
-      path: '/portfolio-15/', 
+      path: '/', 
       label: 'About', 
       icon: HiOutlineUser,
       sectionId: 'about'
     },
     { 
-      path: '/portfolio-15/', 
+      path: '/', 
       label: 'Experience', 
       icon: HiOutlineBriefcase,
       sectionId: 'experience'
     },
     { 
-      path: '/portfolio-15/', 
+      path: '/', 
       label: 'Contact', 
       icon: HiOutlineMail,
       sectionId: 'contact'
@@ -50,15 +50,15 @@ export const Navbar = () => {
   ];
 
   const handleNavClick = useCallback((item) => {
-    if (item.sectionId && location.pathname === '/portfolio-15/') {
+    if (item.sectionId && location.pathname === '/') {
       scrollToSection(item.sectionId);
     }
     setIsMobileMenuOpen(false);
   }, [location.pathname, scrollToSection]);
 
   const isActive = (path) => {
-    if (path === '/portfolio-15/') {
-      return location.pathname === '/portfolio-15/';
+    if (path === '/') {
+      return location.pathname === '/';
     }
     return location.pathname === path;
   };
@@ -70,7 +70,7 @@ export const Navbar = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo/Name */}
             <Link 
-              to="/portfolio-15/" 
+              to="/" 
               className="flex items-center space-x-3 group"
               onClick={() => handleNavClick(navItems[0])}
             >
