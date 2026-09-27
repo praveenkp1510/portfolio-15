@@ -1,0 +1,1 @@
+import{r,j as s}from"./index-7jYEv2eD.js";import{P as e}from"./Projects-CIYYDi0Q.js";const t=r.memo(()=>s.jsx("div",{className:"min-h-screen pt-20",children:s.jsx(e,{})}));t.displayName="Projects";export{t as default};
