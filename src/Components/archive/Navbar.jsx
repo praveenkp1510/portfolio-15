@@ -73,16 +73,9 @@ export const Navbar = () => {
               flex items-center
               text-lg sm:text-xl font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-full
               transition-colors duration-200 ease-in-out
-<<<<<<< HEAD:src/Components/archive/Navbar.jsx
               ${location.pathname === "/portfolio-15/"
                 ? homeColors.active // Active Home: Green
                 : homeColors.inactive + " " + homeColors.hover // Inactive Home: Gray with Green hover
-=======
-              ${
-                location.pathname === "/"
-                  ? homeColors.active // Active Home: Green
-                  : homeColors.inactive + " " + homeColors.hover // Inactive Home: Gray with Green hover
->>>>>>> 59a5985c29da7a07efd9704a29fcf7baf29225a0:src/Components/Navbar.jsx
               }
             `}
           >
@@ -108,16 +101,9 @@ export const Navbar = () => {
               flex items-center
               text-lg sm:text-xl font-medium px-2 py-1 sm:px-3 sm:py-2 rounded-full
               transition-colors duration-200 ease-in-out
-<<<<<<< HEAD:src/Components/archive/Navbar.jsx
               ${location.pathname === "/portfolio-15/projects"
                 ? projectsColors.active // Active Projects: Violet
                 : projectsColors.inactive + " " + projectsColors.hover // Inactive Projects: Gray with Violet hover
-=======
-              ${
-                location.pathname === "/projects"
-                  ? projectsColors.active // Active Projects: Violet
-                  : projectsColors.inactive + " " + projectsColors.hover // Inactive Projects: Gray with Violet hover
->>>>>>> 59a5985c29da7a07efd9704a29fcf7baf29225a0:src/Components/Navbar.jsx
               }
             `}
           >

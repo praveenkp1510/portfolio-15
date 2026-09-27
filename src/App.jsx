@@ -54,7 +54,6 @@ const PageLoader = () => (
 
 function App() {
   return (
-<<<<<<< HEAD
     <ErrorBoundary>
       <ThemeProvider>
         <div className="min-h-screen spotify-comic-bg text-gray-100 comic-font">
@@ -70,15 +69,6 @@ function App() {
         </div>
       </ThemeProvider>
     </ErrorBoundary>
-=======
-    <div className="bg-black min-w-screen max-w-screen">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Intro />} />
-        <Route path="/projects" element={<Projects />} />
-      </Routes>
-    </div>
->>>>>>> 59a5985c29da7a07efd9704a29fcf7baf29225a0
   );
 }
 

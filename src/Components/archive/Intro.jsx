@@ -2,15 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
-import profile from "../assets/developer-program.PNG";
-import { motion } from "framer-motion";
-<<<<<<< HEAD:src/Components/archive/Intro.jsx
-import { useInView } from "react-intersection-observer";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md"; // For email, phone, and location
-import { FaLinkedin } from "react-icons/fa"; // For LinkedIn
 import profile from "../assets/profile.jpg";
-=======
+import { motion } from "framer-motion";
 
 // This hook is no longer necessary but is kept as per the original code.
 const useIsMobile = () => {
@@ -65,8 +58,6 @@ const profileSpin = {
     },
   },
 };
-
->>>>>>> 59a5985c29da7a07efd9704a29fcf7baf29225a0:src/Components/Intro.jsx
 export const Intro = () => {
   const navigate = useNavigate();
   const [activeExperience, setActiveExperience] = useState("nubiznez");
