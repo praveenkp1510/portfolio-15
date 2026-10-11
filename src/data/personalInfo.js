@@ -1,4 +1,5 @@
 import profilePic from '../assets/praveenimg.JPG';
+import resumePdf from '../assets/K P PRAVEEN RESUME (2).pdf';
 
 export const personalInfo = {
   name: "K P Praveen",
@@ -41,7 +42,7 @@ export const personalInfo = {
     github: "https://github.com/praveenkp1510"
   },
   resume: {
-    downloadUrl: "#",
-    filename: "Praveen_KP_Frontend_Developer.pdf"
+    downloadUrl: resumePdf,
+    filename: "K_P_Praveen_Resume.pdf"
   }
 };

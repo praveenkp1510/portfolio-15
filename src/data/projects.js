@@ -1,3 +1,4 @@
+import updatedTbsImg from '../assets/UpdatedTBS.png';
 import busstandImg from '../assets/BusstandImg.PNG';
 import tbsNativeImg from '../assets/TBSNative.png';
 import crmImg from '../assets/CRM.png';
@@ -11,7 +12,7 @@ export const projects = [
     tagline: "High-Traffic Bus Ticketing & Reservation Engine",
     description: "Architected and delivered key responsive booking modules for TheBusStand.com. Engineered high-converting seat selection layouts, lightning-fast search filters, and smooth payment flow integrations.",
     usefulForUsers: "Drives maximum seat conversions with a sub-second search experience, intuitive visual seat mapping, instant mobile responsiveness, and zero checkout friction.",
-    imageUrl: busstandImg,
+    imageUrl: updatedTbsImg,
     metrics: "25% Increase in Mobile Booking Conversions",
     technologies: [
       { name: "React.js", icon: "React" },
@@ -58,10 +59,29 @@ export const projects = [
       { name: "Chart.js / Analytics", icon: "Code" },
       { name: "REST API Integration", icon: "Database" }
     ],
-    liveLink: "https://thebusstand.com/",
+    liveLink: "#",
     featured: true,
     category: "enterprise",
     status: "Production"
+  },
+  {
+    id: "zolvehr-website",
+    title: "ZolveHR - Enterprise HRMS Platform",
+    tagline: "End-to-End Human Resource & Workforce Management System",
+    description: "Architected and delivered comprehensive enterprise HRMS web modules for ZolveHR. Built end-to-end employee self-service portals, administrative dashboards, automated leave approval pipelines, attendance & shift scheduling, and salary disbursement management.",
+    usefulForUsers: "Streamlines organizational HR operations with 1-click leave approvals, transparent attendance tracking, shift scheduling, and role-based access for admins and employees.",
+    imageUrl: developerImg,
+    metrics: "Automated Core HR & Leave Workflows",
+    technologies: [
+      { name: "React.js", icon: "React" },
+      { name: "Tailwind CSS", icon: "Tailwind" },
+      { name: "Redux Toolkit", icon: "Database" },
+      { name: "REST APIs", icon: "Code" }
+    ],
+    liveLink: "#",
+    featured: true,
+    category: "enterprise",
+    status: "Completed"
   },
   {
     id: "esmart-accounting",
@@ -136,24 +156,6 @@ export const projects = [
     liveLink: "#",
     featured: false,
     category: "enterprise",
-    status: "Completed"
-  },
-  {
-    id: "zolvehr-website",
-    title: "ZolveHR Enterprise Web Platform",
-    tagline: "SaaS Marketing & Interactive Product Showcase",
-    description: "Engineered modern landing pages and interactive feature tours for ZolveHR, optimizing Lighthouse score to 95+ and elevating user acquisition through responsive design.",
-    usefulForUsers: "Elevates brand credibility with snappy page transitions, clear pricing tiers, and interactive ROI calculators for HR leaders.",
-    imageUrl: developerImg,
-    metrics: "95+ Google Lighthouse Score",
-    technologies: [
-      { name: "React.js", icon: "React" },
-      { name: "Tailwind CSS", icon: "Tailwind" },
-      { name: "SEO & Performance", icon: "Code" }
-    ],
-    liveLink: "#",
-    featured: false,
-    category: "web",
     status: "Completed"
   }
 ];
