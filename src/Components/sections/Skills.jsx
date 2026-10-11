@@ -1,102 +1,126 @@
-import React, { useMemo } from 'react';
-import { useInView } from '../../hooks/useInView';
-import { skills } from '../../data/skills';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { 
+  FaHtml5, 
+  FaCss3Alt, 
+  FaReact, 
+  FaNodeJs, 
+  FaFigma, 
+  FaGitAlt, 
+  FaDatabase 
+} from 'react-icons/fa';
+import { 
+  SiJavascript, 
+  SiFirebase, 
+  SiTailwindcss, 
+  SiRedux
+} from 'react-icons/si';
 
-const SkillBar = ({ skill }) => {
-  const barWidth = `${skill.level}%`;
-  const progressColorClass = skill.level >= 90
-    ? 'from-emerald-400 to-green-500'
-    : skill.level >= 80
-      ? 'from-lime-400 to-emerald-500'
-      : 'from-amber-400 to-orange-500';
+const skillsList = [
+  { name: 'html', icon: FaHtml5, color: 'text-[#E44D26]' },
+  { name: 'css', icon: FaCss3Alt, color: 'text-[#264DE4]' },
+  { name: 'javascript', icon: SiJavascript, color: 'text-[#F7DF1E]' },
+  { name: 'reactjs', icon: FaReact, color: 'text-[#61DAFB]' },
+  { name: 'react-native', icon: FaReact, color: 'text-[#61DAFB]' },
+  { name: 'nodejs', icon: FaNodeJs, color: 'text-[#68A063]' },
+  { name: 'figma', icon: FaFigma, color: 'text-[#F24E1E]' },
+  { name: 'git', icon: FaGitAlt, color: 'text-[#F05032]' },
+  { name: 'postgresql', icon: FaDatabase, color: 'text-[#336791]' },
+  { name: 'firebase', icon: SiFirebase, color: 'text-[#FFCA28]' },
+  { name: 'tailwind', icon: SiTailwindcss, color: 'text-[#38BDF8]' },
+  { name: 'redux', icon: SiRedux, color: 'text-[#764ABC]' }
+];
 
-  return (
-    <div className="mb-6">
-      <div className="flex justify-between items-center mb-2">
-        <span className="font-medium text-gray-200">{skill.name}</span>
-        <span className="text-primary-600 text-sm font-bold">{skill.level}%</span>
-      </div>
-      <div className="w-full bg-gray-700/60 rounded-full h-2.5 overflow-hidden border border-gray-600">
-        <div
-          className={`bg-gradient-to-r ${progressColorClass} h-full rounded-full transition-[width] duration-500 ease-out`}
-          style={{ width: barWidth }}
-        />
-      </div>
-    </div>
-  );
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
 };
 
 export const Skills = () => {
-  const [skillsRef] = useInView({ threshold: 0.2 });
-
-  const skillCategories = useMemo(() => [
-    { title: "Languages", skills: skills.languages },
-    { title: "Frameworks & Libraries", skills: skills.frameworks },
-    { title: "Tools & Software", skills: skills.tools }
-  ], []);
-
   return (
-    <section ref={skillsRef} id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto section-shell">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 comic-title comic-text-shadow">
-            Technical <span className="text-primary-600">Skills</span>
-          </h2>
-          <div className="speech-bubble inline-block">
-            A quick look at my technical stack and proficiency.
-          </div>
-        </div>
+    <section id="skills" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto font-mono relative">
+      {/* Background Dotted Matrix Decoration with float */}
+      <motion.div 
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-12 left-0 w-20 sm:w-24 h-24 sm:h-28 dotted-matrix -z-10 pointer-events-none" 
+      />
 
-        <div className="comic-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category) => (
-            <div
-              key={category.title}
-              className="comic-card p-6"
-            >
-              <h3 className="text-xl font-bold text-primary-600 mb-6 comic-title">
-                {category.title}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill) => (
-                  <SkillBar 
-                    key={skill.name} 
-                    skill={skill} 
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Section Header with Responsive Animated Line */}
+      <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12">
+        <motion.h2 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center"
+        >
+          <span className="text-[#C778DD]">#</span>skills
+        </motion.h2>
 
-        {/* Education & Certifications */}
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
-          {/* Education */}
-          <div className="comic-panel rounded-xl p-6">
-            <h3 className="text-xl font-bold text-primary-600 mb-4 comic-title">Education</h3>
-            <div className="text-gray-300">
-              <h4 className="font-semibold mb-2">
-                {skills.education.institution}
-              </h4>
-              <p className="mb-2">{skills.education.degree}</p>
-              <p className="text-primary-600 font-medium mb-1">{skills.education.cgpa}</p>
-              <p className="text-gray-400 text-sm">{skills.education.period}</p>
-            </div>
-          </div>
-
-          {/* Certifications */}
-          <div className="comic-panel rounded-xl p-6">
-            <h3 className="text-xl font-bold text-primary-600 mb-4 comic-title">Certifications</h3>
-            <ul className="space-y-2">
-              {skills.certifications.map((cert, index) => (
-                <li key={index} className="text-gray-300 flex items-start">
-                  <span className="text-primary-600 mr-2">✓</span>
-                  {cert}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <motion.div 
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="h-[1px] bg-[#C778DD] origin-left flex-1 max-w-[140px] sm:max-w-xs" 
+        />
       </div>
+
+      {/* Skills Grid */}
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-40px" }}
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4"
+      >
+        {skillsList.map((skill, index) => {
+          const Icon = skill.icon;
+          return (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ 
+                y: -6, 
+                scale: 1.05,
+                boxShadow: "0 0 16px rgba(199, 120, 221, 0.22)"
+              }}
+              whileTap={{ scale: 0.94 }}
+              className="relative flex flex-col items-center justify-center p-3.5 sm:p-5 border border-[#ABB2BF]/40 bg-[#282C33] hover:border-[#C778DD] active:border-[#C778DD] transition-all duration-300 group cursor-pointer overflow-hidden select-none"
+            >
+              {/* Corner accent glow on hover / active */}
+              <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-[#C778DD] opacity-0 group-hover:opacity-100 transition-opacity" />
+
+              <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-2 sm:mb-3">
+                <Icon className={`w-7 h-7 sm:w-8 sm:h-8 ${skill.color} group-hover:scale-125 transition-transform duration-300 drop-shadow-sm`} />
+              </div>
+              
+              <span className="text-[11px] sm:text-xs font-mono text-[#ABB2BF] group-hover:text-white transition-colors lowercase tracking-wide">
+                {skill.name}
+              </span>
+            </motion.div>
+          );
+        })}
+      </motion.div>
+
     </section>
   );
 };

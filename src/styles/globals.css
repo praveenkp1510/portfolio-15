@@ -1,94 +1,156 @@
 @import "tailwindcss";
 
-/* Custom scrollbar styling */
+@layer base {
+  :root {
+    --bg-main: #282C33;
+    --text-primary: #FFFFFF;
+    --text-muted: #ABB2BF;
+    --accent-purple: #C778DD;
+    --border-gray: #ABB2BF;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #282C33;
+    color: #ABB2BF;
+    font-family: 'Fira Code', monospace, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: #282C33;
+    color: #ABB2BF;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1f2937;
+  background: #282C33;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #34d399;
-  border-radius: 4px;
+  background: #4a5160;
+  border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #10b981;
+  background: #C778DD;
 }
 
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #34d399 #1f2937;
+/* Retro Terminal Outline Button */
+.retro-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #C778DD;
+  color: #FFFFFF;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: transparent;
+  transition: all 0.2s ease;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-  background-color: #000;
+.retro-btn:hover {
+  background-color: rgba(199, 120, 221, 0.15);
+  box-shadow: 0 0 10px rgba(199, 120, 221, 0.3);
 }
 
-body {
-  background-color: #121212;
-  color: #f3f4f6;
+.retro-btn-gray {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ABB2BF;
+  color: #ABB2BF;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  background-color: transparent;
+  transition: all 0.2s ease;
 }
 
-/* Text selection */
-::selection {
-  background-color: #34d399;
-  color: #000;
+.retro-btn-gray:hover {
+  border-color: #C778DD;
+  color: #FFFFFF;
+  background-color: rgba(199, 120, 221, 0.1);
 }
 
-/* Focus styles */
-*:focus-visible {
-  outline: 2px solid #34d399;
-  outline-offset: 2px;
+/* Dotted Matrix Background Pattern */
+.dotted-matrix {
+  background-image: radial-gradient(#ABB2BF 1px, transparent 1px);
+  background-size: 14px 14px;
+  opacity: 0.35;
 }
 
-/* Line clamp utility */
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+/* Custom Motion & Glow Utilities */
+.glow-purple {
+  box-shadow: 0 0 15px rgba(199, 120, 221, 0.35);
+}
+
+.glow-purple-lg {
+  box-shadow: 0 0 25px rgba(199, 120, 221, 0.45);
+}
+
+.glow-border {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-border:hover {
+  border-color: #C778DD;
+  box-shadow: 0 0 16px rgba(199, 120, 221, 0.22);
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+@keyframes float-slow-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-1.5deg);
+  }
+}
+
+.animate-float-reverse {
+  animation: float-slow-reverse 6s ease-in-out infinite;
+}
+
+@keyframes scanline-glow {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanline-effect {
+  position: relative;
   overflow: hidden;
-  line-clamp: 3; /* Standard property */
 }
 
-/* Custom glassmorphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.dark .glass {
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Loading skeleton */
-.skeleton {
-  background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+.scanline-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(199, 120, 221, 0.08), transparent);
+  pointer-events: none;
+  animation: scanline-glow 8s linear infinite;
 }
 

@@ -2,9 +2,11 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/common/Navbar';
-import { LoadingSpinner } from './components/ui/LoadingSpinner';
+import { SocialBar } from './components/common/SocialBar';
+import { Footer } from './components/common/Footer';
+import { BackgroundEffects } from './components/common/BackgroundEffects';
 
-// Lazy load pages for better performance
+// Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
 
@@ -26,13 +28,13 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-black text-white flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Oops! Something went wrong.</h1>
-            <p className="text-gray-400 mb-8">Please refresh the page or try again later.</p>
+        <div className="min-h-screen bg-[#282C33] text-white flex items-center justify-center p-6 font-mono">
+          <div className="text-center max-w-md p-8 border border-[#ABB2BF] bg-[#282C33]">
+            <h1 className="text-2xl font-bold mb-4 text-[#C778DD]">&lt;Error /&gt;</h1>
+            <p className="text-[#ABB2BF] mb-6 text-xs">An unexpected error occurred. Please refresh or try again.</p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-3 bg-green-500 text-gray-900 rounded-lg font-medium hover:bg-green-600 transition-colors"
+              className="retro-btn"
             >
               Refresh Page
             </button>
@@ -47,8 +49,13 @@ class ErrorBoundary extends React.Component {
 
 // Loading component for lazy loaded pages
 const PageLoader = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center">
-    <LoadingSpinner size="lg" />
+  <div className="min-h-screen bg-[#282C33] flex items-center justify-center font-mono">
+    <div className="flex flex-col items-center gap-3">
+      <div className="w-8 h-8 border-2 border-[#C778DD] rotate-45 animate-spin flex items-center justify-center" />
+      <span className="text-xs text-[#ABB2BF] tracking-widest lowercase">
+        #loading...
+      </span>
+    </div>
   </div>
 );
 
@@ -56,9 +63,11 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <div className="min-h-screen spotify-comic-bg text-gray-100 comic-font">
+        <div className="min-h-screen bg-[#282C33] text-[#ABB2BF] font-mono flex flex-col justify-between selection:bg-[#C778DD] selection:text-white">
+          <BackgroundEffects />
+          <SocialBar />
           <Navbar />
-          <main className="relative">
+          <main className="relative flex-1">
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -66,6 +75,7 @@ function App() {
               </Routes>
             </Suspense>
           </main>
+          <Footer />
         </div>
       </ThemeProvider>
     </ErrorBoundary>
